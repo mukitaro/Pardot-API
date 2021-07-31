@@ -158,7 +158,11 @@ $pardot->lifecycleStage()->query([...]); // queries and returns a filtered list
 ### Prospects methods
 
 ```php
-// @todo
+$pardot->prospect()->query([...]); // queries and returns a filtered list
+$pardot->prospect()->create([...]); // creates an object using passed array data
+$pardot->prospect()->read(1); // queries an object by ID
+$pardot->prospect()->update(1, [...]); // updates an object by ID using passed array data 
+$pardot->prospect()->delete(1); // deletes an object by ID
 ```
 
 ### Tag Objects methods
