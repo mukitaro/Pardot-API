@@ -153,8 +153,8 @@ class Query
             } catch(Exception $e) {
                 if($this->api->getDebug() === true) {
                     echo $e->getMessage();
-                    die;
                 }
+                throw $e;
             }
         }
         return null;
