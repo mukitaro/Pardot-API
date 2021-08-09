@@ -141,8 +141,8 @@ class PardotAuthenticator implements PardotAuthenticatorInterface
                 $this->getLoginRequestOptions()
             );
 
-            if($this->response->getStatusCode() !== 200) {
-                throw new Exception('Pardot API error: 200 response not returned');
+            if($this->response->getStatusCode() >= 400) {
+                throw new Exception('Pardot API error status code: ' . $this->response->getStatusCode());
             }
             $namespace = $this->api->getFormatter();
             $formatter = new $namespace((string) $this->response->getBody(), 'access_token');
@@ -152,8 +152,8 @@ class PardotAuthenticator implements PardotAuthenticatorInterface
         } catch(Exception $e) {
             if($this->api->getDebug() === true) {
                 echo $e->getMessage();
-                die;
             }
+            throw $e;
         }
         return $this;
     }
