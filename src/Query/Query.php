@@ -143,8 +143,8 @@ class Query
                     $this->getQueryEndpoint(),
                     $this->getQueryRequestOptions()
                 );
-                if($response->getStatusCode() !== 200) {
-                    throw new Exception('Pardot query error: 200 response not returned');
+                if($response->getStatusCode() >= 400) {
+                    throw new Exception('Pardot query error status code: ' . $response->getStatusCode());
                 }
                 $namespace = $this->api->getFormatter();
                 $formatter = new $namespace((string) $response->getBody(), $property);
